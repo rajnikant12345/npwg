@@ -9,4 +9,19 @@
     * Relation between IP address and Physical Address.
     * How OSI Model defines Layer 2 and Layer 3.
 
+### Why we need layer 4 ?
+    * To enable process to process communication.
+
+### What is a process ?
+    * A running program.
+
+#### How two process communicate to each other
+    1. They know each others address.
+    2. They know each others message format.
+    4. They both have a channel open between them.
+
+#### Example of process to process communication in Golang.
+
+
+
 

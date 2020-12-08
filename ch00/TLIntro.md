@@ -1,3 +1,5 @@
+![OSI](https://github.com/rajnikant12345/npwg/blob/main/ch00/image-201.png?raw=true)
+
 ### OSI Model and Layer 4 ( Transport Layer )
 
     1. Why ? ( Why this layer is needed )

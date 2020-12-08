@@ -2,38 +2,44 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 )
 
+
 const (
+	// ServerAddress - address of the server
 	ServerAddress = ":8090"
 )
 
+// receiver go routine
 func startReceiver(conn net.Conn) {
-	b := make([]byte,1024)
+	/* Read and print client message */
+	b := make([]byte, 1024)
 	for {
-		n,err := conn.Read(b)
+		n, err := conn.Read(b)
 		if err != nil {
-			fmt.Print(err)
-			break
+			log.Printf("Closing receiver with error: %v \n",err)
+			return
 		}
-		fmt.Println(string(b[:n]))
+		fmt.Print(string(b[:n]))
 	}
 }
-
 
 func main() {
-	listener,err := net.Listen("tcp",ServerAddress)
+	/* open a listener */
+	listener, err := net.Listen("tcp", ServerAddress)
 	if err != nil {
-		panic(err)
+		log.Fatalf("Error starting servcer: %v", err)
 	}
+	fmt.Println("Server running on " + listener.Addr().String())
 	for {
+		/* Wait for a new connection */
 		conn, err := listener.Accept()
 		if err != nil {
-			panic(err)
+			log.Fatalf("Error accepitng connection: %v", err)
 		}
-		startReceiver(conn)
+		/* Create a new go routine for processing the new client connection */
+		go startReceiver(conn)
 	}
 }
-
-

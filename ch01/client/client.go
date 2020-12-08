@@ -1,45 +1,57 @@
 package main
 
 import (
-	"encoding/hex"
+	"bufio"
 	"fmt"
-	"io/ioutil"
-	"math/rand"
+	"log"
 	"net"
 	"os"
+	"strings"
 )
 
 const (
-	ServerAddress = "localhost:8090"
+	//ServerAddress - address of the server to connect
+	ServerAddress = "127.0.0.1:8090"
 )
 
-func getClientID() string {
-	b := make([]byte,8)
-	_,err := rand.Read(b)
-	if err != nil {
-		panic(err)
-	}
-	return hex.EncodeToString(b)
-}
 
 func main() {
-	client, err := net.Dial("tcp",ServerAddress)
+	/******** Section for dialing to a server ***************/
+
+	client, err := net.Dial("tcp", ServerAddress)
 	if err != nil {
-		panic(err)
+		log.Fatalf("Error while opening connection: %v",err)
 	}
+	defer func() {
+		err = client.Close()
+		log.Fatalf("Error while closing connection: %v",err)
+	}()
 
-	defer client.Close()
-	clientID := getClientID()
+	/***********************************************************/
+
+	/* loop until exit condition is hit */
 	for {
+		/****************** Read message Begin ********************/
 
-		fmt.Print("Type Client Message: ")
-		in,_ := ioutil.ReadAll(os.Stdin)
-		if string(in) == "exit" {
+		fmt.Print("Type Client Message")
+		fmt.Print("Enter text: ")
+		reader := bufio.NewReader(os.Stdin)
+		text, _ := reader.ReadString('\n')
+
+		/******************* Read Message End *********************/
+
+		/***************** Check exit condition **********************/
+		if strings.HasPrefix(text, "exit") {
+			fmt.Println("closing connection...")
 			break
 		}
-		_, err = client.Write([]byte("ClientID: "+ clientID + " Message: " + string(in) ))
+		/************************************************************/
+
+		/********************** write message to server ****************/
+		_, err = client.Write([]byte(text))
 		if err != nil {
-			panic(err)
+			log.Fatalf("Error while writing over connection: %v",err)
 		}
+		/*************************************************************/
 	}
 }

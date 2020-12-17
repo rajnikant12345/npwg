@@ -1,0 +1,71 @@
+This video is about introduction to transport layer,
+i.e. also called as layer 4 of the OSI model.
+
+To know more about Layer 2 and layer 3 , try my udemy course , Go Network programming part 1,
+The link to that course can be found in resources.
+
+This course is all about layer 4 and beyond and
+do not cover machine to machine communication or host to host communication
+
+In this section we will cover why we need transport layer,
+what are it's roles and responsibilities and
+how it functions to fulfill those responsibilities.
+
+Before we proceed, it's good to have knowledge about following topics.
+
+How data is delivered from one host to another host ?
+How IP address and physical address of machines are related to each other ?
+Why and how of data link layer and network layer.
+
+The above topics are not compulsory, but they are good to know.
+
+
+Now let's begin with our first question ?
+
+Why do we need this transport layer ?
+
+The answer to this question is ,
+
+Communication on the Internet is not defined as the exchange of data between two nodes or between two hosts.
+Real communication takes place between two processes.
+
+
+Now the question is, what is a process ?
+
+For those who don't know what a process is,
+
+Any running application on our system is a process, e.g. web browser application, calculator application etc.
+
+But do you know sometimes, we need two processes to communicate to each other.
+
+For doing that we need a standard way
+
+and transport layer or layer 4 defines that standard.
+
+Web surfing is the best example of process to process communication,
+
+in that our web browser process is communicating to a web server , serving the website that we are visiting.
+
+For two processes to communicate we have certain prerequisites ,
+
+let's talk about them
+
+Number  1 is really obvious, they must know each other's address.
+Number 2 is they must understand each other.
+and lastly
+There must be an open channel of communication between them.
+
+So , now for starters we will write two go programs that will demonstrate process to process communication.
+
+Then we will go into more details of what transport layer has to offer.
+
+
+So, let's move on to our coding video.
+
+See you there
+
+===============================================================================================
+
+
+
+

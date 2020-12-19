@@ -1,0 +1,20 @@
+Hello and welcome.
+
+The Last video was just a begninning of transport layer and was an introduction.
+
+but, now it's time to write the two programs client.go and sever.go
+
+These two prograns will give us a taste of process to process communication
+
+and along with that they will be fun to write.
+
+You can find these programs links in the resources and you can just copy paste them into
+
+any go file and and run them as a go application.
+
+In this video I am going to explain each of the program line by line and 
+
+once we are done with our programs we will run them and see process to process communication in action.
+
+So let's start with our server.go
+

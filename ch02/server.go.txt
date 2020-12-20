@@ -1,0 +1,117 @@
+Server.go is a program that will compile into and run a TCP based server.
+
+This is process number 2 in our process to process communication.
+
+
+This program will accept conection from our client process and 
+
+will print the ,message sent by our client on the screen.
+
+
+
+I am going to explain this program line by line, 
+
+and don't worry if you miss somethings this time.
+
+All these topics will be repaeated again with broader coverage, 
+
+so you can actually comeback and watch this video again.
+
+so, Let's begin.
+
+
+the very first line of program is package main and then I have imported the packages 
+
+that we are using in our program.
+
+If you will see the, most important package is net package
+
+net package is providing the functionalities that are helping
+
+us with all the network application programming stuff.
+
+At line number 12 you will see a variable Servee Adress, 
+
+this variable is actually the address of server and out client will use
+
+this address to connect to this server.
+
+
+8090 in the server is called as the port number and 
+
+colon is used as a separateor between netwok address and process address.
+
+and empty string befor colon means that server is running our local host.
+
+
+Now let's skip start receiver function and jump to main,
+
+in the main at line 31, we are making our server ready to listen over port 8090.
+
+For that we are calling net.Listen function with two parametars.
+
+one is transport layer protocol to use i.e. TCP means transport layer protocol
+
+I will cover TCP in comming section so don't worry.
+
+The next function parameter is the server address, that we declated as a constant.
+
+The actual meaning of that call is that, we are asking our opeating system to 
+
+block port number 8090 for our server process and 
+
+if this port is not avaialable or blocked by some other process in our system
+
+the net.Listen all wil throw an error and you can see we are exiting 
+
+if that error is thrown.
+
+Now once our server is ready to listen, we are going to make tell server to start
+
+accepting connections over that listener that we craeted.
+
+you can see that call on. line number 38 and 
+
+on a sucessful conection we are calling startreceiver function, so let's see that.
+
+
+start reciever fuction is called with connection object as function parameter,
+
+this connection object implements reader and writer Go interfaces
+
+so we are using it the same way to read and print the data recieved over this connection.
+
+and we are into a infinite loop till something bad happens, 
+
+in most cases this bad is client closing this connection.
+
+we will see that once we wll run both client and server programms.
+
+Now, lst's go to main function again and look at line number 36 and 43
+
+
+at line number 36 there is an infinite loop
+
+
+and at line number 43 there is a go routine.
+
+
+if you are curious why I have used them, 
+
+so the answer to your curiosity is , 
+
+a server is meant to serve multiple clients, so after acepting connection, we must make it ready
+
+to acept another one.
+
+For that each cnnection must be serveed concurrently so I am using go routine at line 43 to serve  CONCURRENT CLIENt.
+
+and using infinite loop at 36 to acept connection again and again, until hte server process is closed.
+
+
+Now I am going to explain the client program and then we will run both the programs and 
+
+see process to process communication in action.
+
+
+
